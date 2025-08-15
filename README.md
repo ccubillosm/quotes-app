@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Quote Generator App
 
-## Getting Started
+Una aplicación moderna para generar frases inspiradoras con imágenes hermosas de Unsplash.
 
-First, run the development server:
+## ✨ Características
 
+- **Generación de frases**: Obtiene frases aleatorias de una API
+- **Imágenes de fondo**: Imágenes hermosas de Unsplash que cambian con cada frase
+- **Modo oscuro**: Soporte completo para modo claro y oscuro
+- **Diseño responsivo**: Se adapta a todos los dispositivos
+- **Animaciones suaves**: Transiciones fluidas con Framer Motion
+- **Persistencia de tema**: Recuerda tu preferencia de tema
+
+## 🎨 Modo Oscuro
+
+La aplicación incluye un sistema completo de temas:
+
+- **Toggle de tema**: Botón en la esquina superior derecha para cambiar entre modo claro y oscuro
+- **Detección automática**: Se adapta automáticamente a las preferencias del sistema
+- **Persistencia**: Guarda tu preferencia en localStorage
+- **Transiciones suaves**: Cambios de tema con animaciones fluidas
+- **Adaptación visual**: Todos los componentes se adaptan al tema seleccionado
+
+## 🚀 Tecnologías
+
+- **Next.js 15**: Framework de React con App Router
+- **React 19**: Biblioteca de UI
+- **Tailwind CSS 4**: Framework de CSS con soporte nativo para modo oscuro
+- **next-themes**: Manejo de temas en Next.js
+- **Framer Motion**: Animaciones y transiciones
+- **React Query**: Manejo de estado del servidor
+- **TypeScript**: Tipado estático
+
+## 📱 Funcionalidades
+
+### Generación de Frases
+- Clic en el botón "Generate" para obtener una nueva frase
+- Frases inspiradoras de autores reconocidos
+- Carga asíncrona con estados de loading
+
+### Imágenes de Fondo
+- Imágenes de alta calidad de Unsplash
+- Cambio automático con cada nueva frase
+- Atribución a fotógrafos
+- Optimización de rendimiento
+
+### Interfaz de Usuario
+- Diseño minimalista y elegante
+- Navegación intuitiva
+- Feedback visual para todas las acciones
+- Accesibilidad mejorada
+
+## 🛠️ Instalación
+
+1. Clona el repositorio:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/ccubillosm/quotes-app.git
+cd quotes-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instala las dependencias:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Ejecuta en modo desarrollo:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Abre [http://localhost:3000](http://localhost:3000) en tu navegador
 
-## Learn More
+## 📁 Estructura del Proyecto
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                 # App Router de Next.js
+│   ├── layout.tsx      # Layout principal con providers
+│   ├── page.tsx        # Página principal
+│   ├── providers.tsx   # Providers de React Query y Theme
+│   └── globals.css     # Estilos globales
+├── components/         # Componentes reutilizables
+│   ├── ThemeToggle.tsx # Toggle de tema
+│   ├── QuoteCard.tsx   # Tarjeta de frase
+│   ├── ImageContainer.tsx # Contenedor de imagen
+│   └── GenerateButton.tsx # Botón de generación
+├── lib/               # Utilidades y APIs
+└── types/             # Definiciones de TypeScript
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎯 Criterios de Aceptación Implementados
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+✅ **Modo Oscuro Completo**: Toda la interfaz cambia a esquema oscuro
+✅ **Persistencia**: La preferencia se guarda en localStorage
+✅ **Adaptación Visual**: Imágenes y textos se adaptan al tema
+✅ **Transiciones Suaves**: Cambios de tema con animaciones
+✅ **Detección del Sistema**: Se adapta a las preferencias del usuario
 
-## Deploy on Vercel
+## 🔧 Scripts Disponibles
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `npm run dev`: Servidor de desarrollo
+- `npm run build`: Construcción para producción
+- `npm run start`: Servidor de producción
+- `npm run lint`: Verificación de código
+- `npm run test`: Ejecutar tests de Cypress
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌟 Próximas Mejoras
+
+- [ ] Favoritos de frases
+- [ ] Compartir en redes sociales
+- [ ] Categorías de frases
+- [ ] Modo offline
+- [ ] Notificaciones push
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT.

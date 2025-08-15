@@ -17,7 +17,7 @@ export default function QuoteCard({ quote, isLoading, error }: QuoteCardProps) {
     >
       {error ? (
         <motion.div
-          className="bg-red-500/50 p-4 rounded-lg text-white text-xl"
+          className="bg-red-500/50 dark:bg-red-600/30 p-4 rounded-lg text-white text-xl backdrop-blur-sm"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
@@ -25,9 +25,9 @@ export default function QuoteCard({ quote, isLoading, error }: QuoteCardProps) {
           {error.message}
         </motion.div>
       ) : quote ? (
-        <div className="text-center text-white max-w-2xl">
+        <div className="text-center text-white dark:text-gray-100 max-w-2xl">
           <motion.blockquote
-            className="text-2xl md:text-3xl lg:text-4xl font-serif mb-4"
+            className="text-2xl md:text-3xl lg:text-4xl font-serif mb-4 text-shadow-lg"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -35,7 +35,7 @@ export default function QuoteCard({ quote, isLoading, error }: QuoteCardProps) {
             "{quote.content}"
           </motion.blockquote>
           <motion.cite
-            className="text-lg md:text-xl block"
+            className="text-lg md:text-xl block text-gray-200 dark:text-gray-300"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
@@ -44,7 +44,7 @@ export default function QuoteCard({ quote, isLoading, error }: QuoteCardProps) {
           </motion.cite>
         </div>
       ) : (
-        <div className="text-white text-xl">
+        <div className="text-white dark:text-gray-100 text-xl">
           {isLoading ? 'Loading quote...' : 'No quote available'}
         </div>
       )}

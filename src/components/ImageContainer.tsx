@@ -32,7 +32,7 @@ export default function ImageContainer({ photo, isLoading, error }: ImageContain
           />
           {imageLoaded && (
             <motion.div
-              className="absolute bottom-2 right-2 text-xs text-white bg-black/50 px-2 py-1 rounded"
+              className="absolute bottom-2 right-2 text-xs text-white dark:text-gray-100 bg-black/50 dark:bg-black/70 px-2 py-1 rounded backdrop-blur-sm"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -42,7 +42,7 @@ export default function ImageContainer({ photo, isLoading, error }: ImageContain
                 href={photo.user.links.html}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline"
+                className="underline hover:text-gray-200 dark:hover:text-gray-300 transition-colors"
               >
                 {photo.user.name}
               </a>{' '}
@@ -51,7 +51,7 @@ export default function ImageContainer({ photo, isLoading, error }: ImageContain
                 href="https://unsplash.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline"
+                className="underline hover:text-gray-200 dark:hover:text-gray-300 transition-colors"
               >
                 Unsplash
               </a>
@@ -59,7 +59,7 @@ export default function ImageContainer({ photo, isLoading, error }: ImageContain
           )}
         </>
       ) : (
-        <div className="absolute inset-0 flex items-center justify-center text-white">
+        <div className="absolute inset-0 flex items-center justify-center text-white dark:text-gray-100">
           {isLoading ? 'Loading...' : error ? error.message : 'No image available'}
         </div>
       )}

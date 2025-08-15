@@ -5,6 +5,7 @@ import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-quer
 import ImageContainer from '@/components/ImageContainer';
 import QuoteCard from '@/components/QuoteCard';
 import GenerateButton from '@/components/GenerateButton';
+import ThemeToggle from '@/components/ThemeToggle';
 import { getRandomQuote } from '@/lib/quotes';
 import { getRandomPhoto } from '@/lib/unsplash';
 import type { Quote, UnsplashPhoto } from '@/types';
@@ -52,6 +53,7 @@ function HomePage() {
 
   return (
     <main className="relative min-h-screen w-full">
+      <ThemeToggle />
       <ImageContainer 
         photo={photo} 
         isLoading={isLoading} 
