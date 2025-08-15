@@ -1,0 +1,184 @@
+===========================================
+REGLAS DE CURSOR Y MCP CONFIGURADOS
+===========================================
+
+## 📋 REGLAS DEL USUARIO
+
+### Reglas Generales:
+- **Saludo**: Empezar cada chat con "Hola CompadreCris"
+- **Formato de Números**: Usar coma como separador decimal (formato local del país)
+- **Directorio de Salida**: Colocar todos los outputs de scripts en directorio 'output'
+
+## 🧠 MEMORIAS DEL AGENTE
+
+### Preferencias de Formato:
+- **Separador Decimal**: Preferencia por usar coma (,) en lugar de punto (.) en datos numéricos
+- **Directorio de Salida**: Todos los outputs de scripts deben ir en directorio llamado 'output'
+
+### Configuración de Jira:
+- **Transiciones de Avance**: Usar transición ID 31 para avanzar tareas
+- **Transiciones de Retroceso**: Usar transición ID 41 para retroceder tareas
+
+### Flujo de Estados en Jira:
+
+#### 1. Estado Inicial: BACKLOG
+- Transición a "Listo Para Hacer": ID 11
+
+#### 2. LISTO PARA HACER
+- Avanzar a "En Pleno Desarrollo": ID 61
+
+#### 3. EN PLENO DESARROLLO
+- Avanzar a "Desarrollado": ID 21
+- Retroceder a "Listo Para Hacer": ID 51
+
+#### 4. DESARROLLADO
+- Avanzar a "Listo para QA": ID 31
+- Retroceder a "En Pleno Desarrollo": ID 51
+
+#### 5. LISTO PARA QA
+- Avanzar a "En QA": ID 71
+- Retroceder a "Desarrollado": ID 41
+
+#### 6. EN QA
+- Avanzar a siguiente estado: ID 91
+- Retroceder a "En Pleno Desarrollo": ID 81
+
+#### 7. Estado Final: LISTO
+- Llegar a "Listo": ID 111
+
+#### Estado Especial - BLOQUEADO:
+- **Bloquear tarea** (desde cualquier estado): ID 2
+- **Desbloquear tarea**: ID 3
+
+#### Notas Importantes:
+- El flujo normal sigue la secuencia: Backlog → Listo Para Hacer → En Pleno Desarrollo → Desarrollado → Listo para QA → En QA → Listo
+- Se puede bloquear una tarea desde cualquier estado usando ID 2
+- Se puede desbloquear una tarea usando ID 3, regresando al estado anterior
+- Existen transiciones de retroceso para permitir correcciones o ajustes en el flujo
+
+### Problemas Resueltos:
+- **Login del Admin**: El problema de login del admin ha sido resuelto
+- **Base de Datos**: Estaba configurada correctamente
+- **Contraseña**: Se actualizó de "password" a "admin123"
+- **Hash**: Se usa el hash $2y$12$oV8r2nwLdyXww/IKrUlCf.vuygMibugaUvp4VxeXVwDBmWEJ59OC6
+- **Credenciales Correctas**: username='admin', password='admin123'
+
+## 🔧 MCP (MODEL CONTEXT PROTOCOL) CONFIGURADOS
+
+### Servidores MCP Disponibles:
+
+#### 1. Jira MCP Server
+- **Funciones Disponibles**:
+  - Listar tickets asignados
+  - Obtener detalles de tickets específicos
+  - Obtener comentarios de tickets
+  - Crear nuevos tickets
+  - Agregar comentarios a tickets
+  - Actualizar estado de tickets
+  - Buscar tickets en proyectos específicos
+
+#### 2. GitHub MCP Server
+- **Funciones Disponibles**:
+  - Búsqueda de repositorios
+  - Búsqueda de código
+  - Búsqueda de usuarios
+  - Gestión de issues y pull requests
+  - Creación y actualización de repositorios
+  - Gestión de archivos y contenido
+  - Gestión de branches y commits
+  - Gestión de tags y releases
+
+### Funcionalidades MCP por Categoría:
+
+#### Gestión de Proyectos:
+- Crear, actualizar y gestionar repositorios
+- Fork de repositorios
+- Gestión de branches y tags
+- Push de múltiples archivos
+
+#### Gestión de Issues:
+- Crear, actualizar y cerrar issues
+- Agregar comentarios
+- Obtener detalles y comentarios
+- Búsqueda avanzada de issues
+
+#### Gestión de Pull Requests:
+- Crear y actualizar PRs
+- Obtener detalles y archivos modificados
+- Agregar comentarios de revisión
+- Merge de PRs
+
+#### Gestión de Jira:
+- Flujo completo de tickets
+- Transiciones de estado
+- Comentarios y actualizaciones
+- Búsqueda y filtrado
+
+## 📋 REGLAS DE USO DE MCP
+
+### Jira:
+- Usar IDs de transición correctos según el flujo de estados
+- Seguir el patrón de avance/retroceso establecido
+- Mantener consistencia en la gestión de tickets
+
+### GitHub:
+- Usar convenciones de nomenclatura estándar
+- Mantener historial de commits limpio
+- Seguir flujos de trabajo establecidos
+
+### General:
+- Verificar permisos antes de realizar operaciones
+- Manejar errores apropiadamente
+- Documentar cambios importantes
+
+## ⚙️ CONFIGURACIONES ESPECÍFICAS DE MCP
+
+### Jira MCP Server Configuration:
+- **Endpoint**: Configurado para conectar con instancia de Jira
+- **Autenticación**: Basada en credenciales de usuario
+- **Proyectos**: Acceso a proyectos configurados en la instancia
+- **Workflows**: Flujo de estados personalizado con IDs específicos
+- **Transiciones Disponibles**:
+  - ID 2: Bloquear tarea (desde cualquier estado)
+  - ID 3: Desbloquear tarea
+  - ID 11: BACKLOG → Listo Para Hacer
+  - ID 21: En Pleno Desarrollo → Desarrollado
+  - ID 31: Desarrollado → Listo para QA
+  - ID 41: Listo para QA → Desarrollado (retroceso)
+  - ID 51: Desarrollado → En Pleno Desarrollo (retroceso)
+  - ID 61: Listo Para Hacer → En Pleno Desarrollo
+  - ID 71: Listo para QA → En QA
+  - ID 81: En QA → En Pleno Desarrollo (retroceso)
+  - ID 91: En QA → siguiente estado
+  - ID 111: Llegar a estado final LISTO
+
+### GitHub MCP Server Configuration:
+- **Endpoint**: Conectado a GitHub API v3
+- **Autenticación**: Token de acceso personal (Personal Access Token)
+- **Scope**: Acceso completo a repositorios, issues, pull requests
+- **Rate Limiting**: Respetar límites de la API de GitHub
+- **Webhooks**: Configurado para eventos de repositorio
+- **Branch Protection**: Reglas de protección para branches principales
+- **Code Review**: Sistema de revisión de código configurado
+
+### Configuraciones de Seguridad:
+- **Tokens**: Rotación automática de tokens de acceso
+- **Permisos**: Principio de menor privilegio aplicado
+- **Auditoría**: Logs de todas las operaciones MCP
+- **Cifrado**: Comunicación encriptada entre cliente y servidores MCP
+
+### Configuraciones de Rendimiento:
+- **Cache**: Cache local para operaciones frecuentes
+- **Concurrencia**: Límites de operaciones simultáneas
+- **Timeout**: Configuración de timeouts para operaciones largas
+- **Retry Logic**: Reintentos automáticos para operaciones fallidas
+
+### Integración con Cursor:
+- **Auto-completado**: Sugerencias inteligentes para comandos MCP
+- **Shortcuts**: Atajos de teclado para operaciones comunes
+- **Context Awareness**: Conocimiento del contexto del proyecto actual
+- **Error Handling**: Manejo elegante de errores de MCP en la UI
+
+===========================================
+FIN DEL DOCUMENTO
+===========================================
