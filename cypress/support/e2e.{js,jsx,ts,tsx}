@@ -1,0 +1,23 @@
+// Import commands.js using ES2015 syntax:
+import './commands'
+
+// Alternatively you can use CommonJS syntax:
+// require('./commands')
+
+// Configuración global de Cypress
+Cypress.config('defaultCommandTimeout', 10000)
+
+// Ignorar errores no críticos
+Cypress.on('uncaught:exception', (err, runnable) => {
+  // returning false here prevents Cypress from failing the test
+  return false
+})
+
+// Configuración para interceptar solicitudes de red
+beforeEach(() => {
+  // Interceptar llamadas a la API de citas
+  cy.intercept('GET', '**/random*').as('quoteRequest')
+  
+  // Interceptar llamadas a Unsplash
+  cy.intercept('GET', '**/photos/random*').as('photoRequest')
+})
